@@ -11,17 +11,30 @@
  *----------------------------------------------------------------------------*/
 package com.inv3r53.cdi.beans;
 
+import java.util.Iterator;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+
 
 @ApplicationScoped
 public class Bean1 {
 
+    @Inject
+    private Instance<Vehicle> i;
+
     @PostConstruct
     private void init() {
         System.out.println("Post Construct :" + getClass());
+        System.out.println(i.iterator().hasNext());
+        Iterator<Vehicle> it = i.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next().getClass());
+        }
+
     }
 
     @PreDestroy
