@@ -14,8 +14,9 @@ package com.inv3r53.cdi.beans;
 import javax.enterprise.context.Dependent;
 
 @Dependent
+@Logger
 public class Bean3 {
-    public void print() {
-        System.out.println("In " + getClass());
-    }
+	public void print() {
+		System.out.println("In Bean3 " + getClass());
+	}
 }
