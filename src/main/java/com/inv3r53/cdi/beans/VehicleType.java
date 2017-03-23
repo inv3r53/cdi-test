@@ -23,6 +23,6 @@ import javax.inject.Qualifier;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface VehicleType {
 
-    String type() default "";
+	String type();
 
 }

@@ -11,20 +11,20 @@
  *----------------------------------------------------------------------------*/
 package com.inv3r53.cdi.beans;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 
-@ApplicationScoped
+@Dependent
 @VehicleType(type = "Truck")
 public class Truck implements Vehicle {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.inv3r53.cdi.beans.qualifier.Vehicle#drive()
-     */
-    public void drive() {
-        System.out.println(getClass());
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.inv3r53.cdi.beans.qualifier.Vehicle#drive()
+	 */
+	public void drive() {
+		System.out.println(getClass());
 
-    }
+	}
 
 }

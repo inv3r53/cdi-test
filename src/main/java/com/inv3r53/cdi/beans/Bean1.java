@@ -16,37 +16,55 @@ import java.util.Iterator;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
-
 
 @ApplicationScoped
 public class Bean1 {
 
-    @Inject
-    private Instance<Vehicle> i;
+	@Inject
+	@Any
+	private Instance<Vehicle> i;
 
-    @PostConstruct
-    private void init() {
-        System.out.println("Post Construct :" + getClass());
-        System.out.println(i.iterator().hasNext());
-        Iterator<Vehicle> it = i.iterator();
-        while (it.hasNext()) {
-            System.out.println(it.next().getClass());
-        }
+	@Inject
+	@VehicleType(type = "Bus")
+	private Vehicle bus; // Will have Bus injected if no alternative is activated else Jeep if alternative is activated.
 
-    }
+	@Inject
+	private Vehicle auto; // default qualifier is present by default at injection point. //if alternative is activated
+							// then Auto is replaced by Van.
 
-    @PreDestroy
-    private void dest() {
-        System.out.println("Pre Destroy :" + getClass());
-    }
+	@PostConstruct
+	private void init() {
+		System.out.println("Post Construct :" + getClass());
+		System.out.println("**************************************");
+		System.out.println(i.iterator().hasNext());
+		Iterator<Vehicle> it = i.iterator(); // Van i.e @alternative wont be added in this unless activated explicitly
+												// in
+												// beans.xml
+		while (it.hasNext()) {
+			System.out.println(it.next().getClass());
+		}
+		System.out.println("**************************************");
+		//
+		System.out.print("Qualifier Bus=>");
+		bus.drive();
+		System.out.print("Qualifier Default=>");
+		auto.drive();
+		System.out.println("**************************************");
+	}
 
-    @Inject
-    private Bean2 bean2;
+	@PreDestroy
+	private void dest() {
+		System.out.println("Pre Destroy :" + getClass());
+	}
 
-    public void run() {
-        bean2.print();
-    }
+	@Inject
+	private Bean2 bean2;
+
+	public void run() {
+		bean2.print();
+	}
 
 }
