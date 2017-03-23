@@ -1,3 +1,5 @@
+package com.inv3r53.cdi.beans.qualifier;
+
 /*------------------------------------------------------------------------------
  *******************************************************************************
  * COPYRIGHT Ericsson 2016
@@ -9,31 +11,17 @@
  * program(s) have been supplied.
  *******************************************************************************
  *----------------------------------------------------------------------------*/
-package com.inv3r53.cdi.beans;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+public class Car implements Vehicle {
 
-@ApplicationScoped
-public class Bean1 {
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.inv3r53.cdi.beans.qualifier.Vehicle#drive()
+     */
+    public void drive() {
+        System.out.println(getClass());
 
-    @PostConstruct
-    private void init() {
-        System.out.println("Post Construct :" + getClass());
-    }
-
-    @PreDestroy
-    private void dest() {
-        System.out.println("Pre Destroy :" + getClass());
-    }
-
-    @Inject
-    private Bean2 bean2;
-
-    public void run() {
-        bean2.print();
     }
 
 }
