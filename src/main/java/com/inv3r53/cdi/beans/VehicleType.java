@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 import javax.inject.Qualifier;
 
 @Qualifier
-@Target(value = { ElementType.FIELD, ElementType.TYPE })
+@Target(value = { ElementType.FIELD, ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface VehicleType {
 

@@ -34,6 +34,9 @@ public class Bean1 {
 	@Inject
 	private Vehicle auto; // default qualifier is present by default at injection point. //if alternative is activated
 							// then Auto is replaced by Van.
+	@Inject
+	@CustomVehicle
+	private Vehicle custom;
 
 	@PostConstruct
 	private void init() {
@@ -44,7 +47,7 @@ public class Bean1 {
 												// in
 												// beans.xml
 		while (it.hasNext()) {
-			System.out.println(it.next().getClass());
+			it.next().drive();
 		}
 		System.out.println("**************************************");
 		//
@@ -52,6 +55,9 @@ public class Bean1 {
 		bus.drive();
 		System.out.print("Qualifier Default=>");
 		auto.drive();
+		System.out.println("**************************************");
+		System.out.print("Qualifier CustomVehicle=>");
+		custom.drive();
 		System.out.println("**************************************");
 	}
 
