@@ -38,6 +38,9 @@ public class Bean1 {
 	@CustomVehicle
 	private Vehicle custom;
 
+	@Inject
+	private EventProducer prod;
+
 	@PostConstruct
 	private void init() {
 		System.out.println("Post Construct :" + getClass());
@@ -71,6 +74,9 @@ public class Bean1 {
 
 	public void run() {
 		bean2.print();
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		prod.generateEvent();
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 	}
 
 }
